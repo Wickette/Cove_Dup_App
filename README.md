@@ -38,7 +38,7 @@ Full interactive version (all screens + a feature breakdown): see `docs/cove-moc
 
 | Phase | Scope | Est. time | Status |
 |---|---|---|---|
-| 0. Setup | Laravel install, Breeze auth, git, Filament installed | 1 week | 🔄 In progress |
+| 0. Setup | Laravel install, Breeze auth, git, Filament installed | 1 week | ✅ Done |
 | 1. Data layer | Migrations + models (Cove, Entry, Tag) + Filament Resources | 1–2 weeks | Not started |
 | 2. Consumer MVP UI | Livewire: Coves list, timeline, add-entry sheet | 2–3 weeks | Not started |
 | 3. Multi-type entries + tags | Voice/link/music entries, tagging UI | 2 weeks | Not started |
@@ -50,15 +50,24 @@ Full interactive version (all screens + a feature breakdown): see `docs/cove-moc
 
 ## Progress log
 
-### Phase 0 — Setup
+### Phase 0 — Setup ✅ complete
 - [x] Cloned repo, created `cove-app-dev` branch
 - [x] Scaffolded Laravel 11 via Composer
 - [x] Confirmed local dev server runs (`php artisan serve`)
 - [x] Switched to SQLite for local database
 - [x] Installed Laravel Breeze with the Livewire stack (auth scaffolding)
 - [x] Ran initial migrations (`users`, `cache`, `jobs`)
-- [ ] Verify register/login flow end-to-end
-- [ ] Install Filament (admin panel)
+- [x] Verified register/login flow end-to-end
+- [x] Enabled PHP `zip` extension (Laragon php.ini) — required by Filament's export dependency
+- [x] Installed Filament v4 (`composer require filament/filament:"^4.0" -W`), pinned to v4 to stay compatible with Breeze's Livewire 3
+- [x] Ran `filament:install --panels`, created admin user, confirmed `/admin` loads and logs in
+
+### Phase 1 — Data layer (next up)
+- [ ] Design the Cove/Entry/Tag data model (fields, relationships)
+- [ ] Create migrations
+- [ ] Create Eloquent models + relationships
+- [ ] Create Filament Resources for Cove and Entry
+- [ ] Confirm CRUD works end-to-end through `/admin`
 
 ## Getting started (local dev)
 
