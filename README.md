@@ -1,58 +1,78 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Cove (personal rebuild)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A private, ad-free place to document your life — photos, notes, links, and voice memos, sorted into themed spaces called **Coves**, instead of one endless feed.
 
-## About Laravel
+This is a personal, non-commercial rebuild inspired by [Cove](https://apps.apple.com/us/app/cove-document-your-life/id6740141065) by Cove Labs, Inc. (the app YouTube/TikTok creator Lenalifts built with her brother). Built for personal use only — not affiliated with or endorsed by Cove Labs.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## What it is
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Not a workout tracker. Cove is closer to a private scrapbook:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Coves** — themed collections you create (a trip, a hobby, a relationship, a goal)
+- **Entries** — photos, notes, links, voice memos, or songs saved into a Cove
+- **Timeline feed** — each Cove shows its entries newest-first
+- **Search** — full-text search across everything you've saved
+- **Private by default** — sharing is opt-in, per-Cove, invite-only
+- **No ads, no algorithm** — nothing ranks or monetizes your attention
+- **Installs like a native app** — home-screen icon, full-screen, works offline (PWA)
 
-## Learning Laravel
+### Mockup
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+![Five core screens: sign-in, Coves list, Cove timeline, add-entry sheet, search & sharing](docs/cove-mockup-screens.png)
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Full interactive version (all screens + a feature breakdown): see `docs/cove-mockup.html`, or the [published mockup](https://claude.ai/code/artifact/15132d24-c4bf-4c4e-b598-2ef5dbaeaa90).
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## Tech stack
 
-## Agentic Development
+| Layer | Choice | Why |
+|---|---|---|
+| Backend | Laravel 11 | Matches existing PHP/Laravel experience |
+| Database | SQLite | Single file, zero server — right-sized for a single-user personal app |
+| Auth | Laravel Breeze (Livewire stack) | Email/password + social login, minimal hand-written JS |
+| Reactive UI | Livewire | Server-driven components, no separate frontend framework |
+| Admin/back office | Filament | Fast CRUD over Coves/Entries/Users, managed from a desktop browser |
+| Consumer UI | Blade + Tailwind | The actual phone-facing app, styled to match the mockup |
+| Installability | Web manifest + service worker (PWA) | Home-screen install without an App Store |
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Roadmap
+
+| Phase | Scope | Est. time | Status |
+|---|---|---|---|
+| 0. Setup | Laravel install, Breeze auth, git, Filament installed | 1 week | 🔄 In progress |
+| 1. Data layer | Migrations + models (Cove, Entry, Tag) + Filament Resources | 1–2 weeks | Not started |
+| 2. Consumer MVP UI | Livewire: Coves list, timeline, add-entry sheet | 2–3 weeks | Not started |
+| 3. Multi-type entries + tags | Voice/link/music entries, tagging UI | 2 weeks | Not started |
+| 4. Search | Full-text search (Laravel Scout) | 1–2 weeks | Not started |
+| 5. PWA polish | Offline caching, installability, mobile UX pass | 1–2 weeks | Not started |
+| 6. Sharing | Invite a second user into a shared Cove | 2–3 weeks | Not started |
+
+**MVP target (through Phase 2):** ~5–7 weeks. **Full personal version (through Phase 6):** ~10–13 weeks, at roughly 8–10 focused hours/week.
+
+## Progress log
+
+### Phase 0 — Setup
+- [x] Cloned repo, created `cove-app-dev` branch
+- [x] Scaffolded Laravel 11 via Composer
+- [x] Confirmed local dev server runs (`php artisan serve`)
+- [x] Switched to SQLite for local database
+- [x] Installed Laravel Breeze with the Livewire stack (auth scaffolding)
+- [x] Ran initial migrations (`users`, `cache`, `jobs`)
+- [ ] Verify register/login flow end-to-end
+- [ ] Install Filament (admin panel)
+
+## Getting started (local dev)
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/wickette/cove_dup_app.git cove
+cd cove
+composer install
+cp .env.example .env
+php artisan key:generate
+touch database/database.sqlite
+# set DB_CONNECTION=sqlite in .env, remove/comment the other DB_* lines
+php artisan migrate
+npm install && npm run build
+php artisan serve
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Visit `http://127.0.0.1:8000`.

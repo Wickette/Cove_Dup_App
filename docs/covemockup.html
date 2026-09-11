@@ -1,0 +1,636 @@
+<title>Cove UI Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --bg:#F1E9D8;
+    --surface:#FFFBF2;
+    --surface-2:#E9DEC5;
+    --ink:#2B2018;
+    --ink-muted:#6B5D4E;
+    --gold:#A87C2E;
+    --gold-ink:#5C4110;
+    --teal:#3E6B62;
+    --border:#DCCFB4;
+    --shadow: 0 18px 40px -20px rgba(43,32,24,0.35);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1C1510;
+      --surface:#241B14;
+      --surface-2:#2E2318;
+      --ink:#EDE3D0;
+      --ink-muted:#B4A78E;
+      --gold:#D9A54B;
+      --gold-ink:#F4D999;
+      --teal:#7BB3A5;
+      --border:#3A2E22;
+      --shadow: 0 18px 40px -18px rgba(0,0,0,0.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#1C1510;
+    --surface:#241B14;
+    --surface-2:#2E2318;
+    --ink:#EDE3D0;
+    --ink-muted:#B4A78E;
+    --gold:#D9A54B;
+    --gold-ink:#F4D999;
+    --teal:#7BB3A5;
+    --border:#3A2E22;
+    --shadow: 0 18px 40px -18px rgba(0,0,0,0.6);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Work Sans',system-ui,sans-serif;
+    padding-inline:24px;
+    padding-block:48px 72px;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Fraunces',Georgia,serif;
+    text-wrap:balance;
+  }
+  .wrap{ max-width:1120px; margin-inline:auto; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    max-width:640px;
+    margin-bottom:56px;
+  }
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold-ink);
+    font-weight:600;
+  }
+  .hero h1{
+    font-size:clamp(2.2rem,5vw,3.4rem);
+    font-weight:500;
+    margin:0;
+    line-height:1.05;
+  }
+  .hero p{
+    font-size:1.05rem;
+    color:var(--ink-muted);
+    line-height:1.6;
+    margin:0;
+    max-width:52ch;
+  }
+  .hero-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:6px;
+  }
+  .hero-tags span{
+    font-size:0.78rem;
+    padding:5px 12px;
+    border-radius:999px;
+    border:1px solid var(--border);
+    color:var(--ink-muted);
+    background:var(--surface);
+  }
+
+  /* ---------- Phone gallery ---------- */
+  .gallery-label{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:18px;
+    flex-wrap:wrap;
+  }
+  .gallery-label h2{
+    font-size:1.5rem;
+    font-weight:500;
+    margin:0;
+  }
+  .gallery-label p{
+    color:var(--ink-muted);
+    font-size:0.9rem;
+    margin:0;
+  }
+  .gallery{
+    display:flex;
+    gap:22px;
+    overflow-x:auto;
+    padding-block:8px 20px;
+    scroll-snap-type:x proximity;
+    margin-bottom:64px;
+  }
+  .screen-col{
+    flex:0 0 auto;
+    width:252px;
+    scroll-snap-align:start;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .phone{
+    width:252px;
+    height:528px;
+    border-radius:34px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+    padding:10px;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+  }
+  .notch{
+    position:absolute;
+    top:10px; left:50%; transform:translateX(-50%);
+    width:70px; height:18px;
+    background:var(--ink);
+    opacity:0.85;
+    border-radius:999px;
+    z-index:5;
+  }
+  .screen{
+    flex:1;
+    border-radius:26px;
+    background:var(--bg);
+    overflow:hidden;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    font-size:12px;
+  }
+  .status-row{
+    display:flex;
+    justify-content:space-between;
+    padding:14px 16px 4px;
+    font-size:10px;
+    color:var(--ink-muted);
+    font-variant-numeric:tabular-nums;
+  }
+  .screen-title{
+    font-family:'Fraunces',Georgia,serif;
+    font-size:19px;
+    font-weight:500;
+    padding:8px 16px 2px;
+  }
+  .screen-sub{
+    padding:0 16px 10px;
+    color:var(--ink-muted);
+    font-size:11px;
+  }
+  .caption{
+    text-align:left;
+  }
+  .caption .num{
+    color:var(--gold-ink);
+    font-weight:600;
+    font-size:0.72rem;
+    letter-spacing:0.06em;
+  }
+  .caption h3{
+    font-size:0.98rem;
+    font-weight:600;
+    margin:2px 0 4px;
+    font-family:'Work Sans',sans-serif;
+  }
+  .caption p{
+    font-size:0.82rem;
+    color:var(--ink-muted);
+    line-height:1.5;
+    margin:0;
+  }
+
+  /* --- shared screen bits --- */
+  .cove-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:16px;
+    margin:0 12px 10px;
+    padding:10px 12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .cove-swatch{
+    width:38px;height:38px;border-radius:10px;flex:none;
+  }
+  .cove-meta{flex:1; min-width:0;}
+  .cove-meta .name{font-weight:600; font-size:12.5px;}
+  .cove-meta .sub{color:var(--ink-muted); font-size:10.5px;}
+  .avatars{display:flex; margin-left:-4px;}
+  .avatars span{
+    width:16px;height:16px;border-radius:50%;
+    border:1.5px solid var(--surface);
+    margin-left:-4px;
+    display:inline-block;
+  }
+  .fab{
+    position:absolute;
+    right:14px; bottom:14px;
+    width:42px;height:42px;border-radius:50%;
+    background:var(--gold);
+    color:#2B2018;
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px; font-weight:600;
+    box-shadow:0 8px 16px -6px rgba(0,0,0,0.4);
+  }
+  .tabbar{
+    display:flex;
+    justify-content:space-around;
+    padding:10px 8px 8px;
+    border-top:1px solid var(--border);
+    background:var(--surface);
+  }
+  .tabbar .tab{
+    width:20px;height:20px;border-radius:6px;
+    background:var(--surface-2);
+  }
+  .tabbar .tab.active{ background:var(--teal); }
+
+  .feed-entry{
+    margin:0 12px 10px;
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    background:var(--surface);
+  }
+  .feed-entry .media{
+    height:78px;
+  }
+  .feed-entry .body{
+    padding:8px 10px 10px;
+  }
+  .feed-entry .day{
+    font-size:9.5px;
+    color:var(--ink-muted);
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    padding:8px 12px 2px;
+  }
+  .feed-entry .note{ font-size:11px; line-height:1.4; }
+  .chip-row{ display:flex; gap:6px; padding:0 12px 10px; flex-wrap:wrap;}
+  .chip{
+    font-size:9.5px;
+    padding:3px 8px;
+    border-radius:999px;
+    background:var(--surface-2);
+    color:var(--ink-muted);
+  }
+
+  .sheet{
+    margin-top:auto;
+    background:var(--surface);
+    border-top:1px solid var(--border);
+    border-radius:20px 20px 0 0;
+    padding:14px 16px 18px;
+    box-shadow:0 -14px 30px -20px rgba(0,0,0,0.4);
+  }
+  .grab{ width:34px;height:4px;border-radius:2px;background:var(--border); margin:0 auto 12px; }
+  .add-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:12px; }
+  .add-opt{
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:10px 6px;
+    text-align:center;
+    font-size:10.5px;
+    background:var(--bg);
+  }
+  .add-opt .ic{ font-size:16px; display:block; margin-bottom:4px; }
+  .textbox{
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:var(--bg);
+    padding:10px;
+    font-size:11px;
+    color:var(--ink-muted);
+    min-height:52px;
+  }
+  .btn-primary{
+    margin-top:10px;
+    background:var(--gold);
+    color:#2B2018;
+    text-align:center;
+    padding:11px;
+    border-radius:12px;
+    font-weight:600;
+    font-size:12px;
+  }
+
+  .search-bar{
+    margin:0 12px 12px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:9px 12px;
+    font-size:11.5px;
+    color:var(--ink-muted);
+    display:flex;
+    gap:6px;
+    align-items:center;
+  }
+  .result-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:5px;
+    padding:0 12px;
+  }
+  .result-grid div{
+    aspect-ratio:1;
+    border-radius:8px;
+  }
+
+  .lock-hero{
+    margin:20px 16px 14px;
+    height:120px;
+    border-radius:18px;
+    display:flex;
+    align-items:flex-end;
+    padding:12px;
+    color:#F4EEDD;
+    font-family:'Fraunces',serif;
+    font-size:22px;
+  }
+  .field{
+    margin:0 16px 10px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:11px 12px;
+    font-size:11.5px;
+    color:var(--ink-muted);
+    background:var(--surface);
+  }
+  .oauth-row{ display:flex; gap:8px; margin:14px 16px 0; }
+  .oauth-row .field{ flex:1; margin:0; text-align:center; font-weight:600; color:var(--ink); }
+
+  .invite-row{
+    margin:0 12px 8px;
+    display:flex; align-items:center; gap:10px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:9px 10px;
+  }
+  .invite-row .dot{ width:30px;height:30px;border-radius:50%; flex:none;}
+  .invite-row .who{ flex:1; font-size:11.5px; font-weight:600;}
+  .invite-row .role{ font-size:9.5px; color:var(--ink-muted);}
+  .pill-btn{
+    font-size:9.5px; padding:5px 10px; border-radius:999px;
+    background:var(--surface-2); color:var(--ink-muted); font-weight:600;
+  }
+
+  /* ---------- Feature index ---------- */
+  .index{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+    margin-bottom:40px;
+  }
+  .index-item{
+    background:var(--surface);
+    padding:18px 20px;
+  }
+  .index-item .k{
+    font-family:'Fraunces',serif;
+    font-size:1.05rem;
+    margin:0 0 6px;
+  }
+  .index-item p{
+    margin:0;
+    font-size:0.85rem;
+    color:var(--ink-muted);
+    line-height:1.55;
+  }
+
+  footer{
+    color:var(--ink-muted);
+    font-size:0.82rem;
+    border-top:1px solid var(--border);
+    padding-top:18px;
+    max-width:640px;
+  }
+
+  @media (max-width:520px){
+    .hero h1{ font-size:2rem; }
+  }
+</style>
+
+<div class="wrap">
+
+  <section class="hero">
+    <span class="eyebrow">UI reference &middot; not the real app</span>
+    <h1 class="serif">What "Cove" actually is — and what your version will look like</h1>
+    <p>Cove isn't a workout tracker. It's a private, ad-free place to save the pieces of your life — photos, notes, links, voice memos — sorted into themed spaces called <strong>Coves</strong>, instead of one endless feed. These five screens are the visual target: what your app should feel like once the MVP is done.</p>
+    <div class="hero-tags">
+      <span>No ads</span>
+      <span>No algorithm</span>
+      <span>Private by default</span>
+      <span>Organized by theme, not by date</span>
+    </div>
+  </section>
+
+  <div class="gallery-label">
+    <h2 class="serif">The five core screens</h2>
+    <p>Scroll → to see all of them</p>
+  </div>
+
+  <div class="gallery">
+
+    <!-- 1. Sign in -->
+    <div class="screen-col">
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="status-row"><span>9:41</span><span>●●●●</span></div>
+          <div class="lock-hero" style="background:linear-gradient(160deg,#3E6B62,#22392F);">Cove</div>
+          <div style="padding:0 16px 4px; color:var(--ink-muted); font-size:11px;">Document your life. No feed. No noise.</div>
+          <div class="field" style="margin-top:14px;">stephanie@ ...</div>
+          <div class="field">••••••••</div>
+          <div class="oauth-row">
+            <div class="field"> Apple</div>
+            <div class="field"> Google</div>
+          </div>
+        </div>
+      </div>
+      <div class="caption">
+        <span class="num">01 · Sign in</span>
+        <h3>Auth screen</h3>
+        <p>Email/password plus Apple &amp; Google sign-in. Nothing to build until this exists — it's the foundation everything else locks behind.</p>
+      </div>
+    </div>
+
+    <!-- 2. Home / list of coves -->
+    <div class="screen-col">
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="status-row"><span>9:41</span><span>●●●●</span></div>
+          <div class="screen-title">Your Coves</div>
+          <div class="screen-sub">5 spaces · updated today</div>
+
+          <div class="cove-card">
+            <div class="cove-swatch" style="background:#7BAF9E;"></div>
+            <div class="cove-meta"><div class="name">Barn Cats</div><div class="sub">Kai · Jynx · Rin — 42 entries</div></div>
+          </div>
+          <div class="cove-card">
+            <div class="cove-swatch" style="background:#C79A4B;"></div>
+            <div class="cove-meta"><div class="name">Fiber &amp; Stitch Log</div><div class="sub">sewing + knitting WIPs — 18 entries</div></div>
+          </div>
+          <div class="cove-card">
+            <div class="cove-swatch" style="background:#9C6B4E;"></div>
+            <div class="cove-meta"><div class="name">Lifting Log</div><div class="sub">gym progress — 30 entries</div></div>
+          </div>
+          <div class="cove-card">
+            <div class="cove-swatch" style="background:#5F7FA6;"></div>
+            <div class="cove-meta">
+              <div class="name">Me &amp; Matthew</div>
+              <div class="sub">shared cove</div>
+            </div>
+            <div class="avatars"><span style="background:#C79A4B;"></span><span style="background:#5F7FA6;"></span></div>
+          </div>
+
+          <div class="fab">+</div>
+          <div class="tabbar" style="margin-top:auto;">
+            <div class="tab active"></div><div class="tab"></div><div class="tab"></div><div class="tab"></div>
+          </div>
+        </div>
+      </div>
+      <div class="caption">
+        <span class="num">02 · Home</span>
+        <h3>Coves list</h3>
+        <p>The whole app hangs off this list. Each Cove is a themed collection — not a chronological "wall" — so your gym log and your cat photos never blend together.</p>
+      </div>
+    </div>
+
+    <!-- 3. Cove detail / timeline feed -->
+    <div class="screen-col">
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="status-row"><span>9:41</span><span>●●●●</span></div>
+          <div class="screen-title">Fiber &amp; Stitch Log</div>
+          <div class="screen-sub">18 entries · private</div>
+
+          <div class="feed-entry">
+            <div class="media" style="background:linear-gradient(135deg,#C79A4B,#8C6A32);"></div>
+            <div class="body note">Cut the bodice pieces for the corduroy pinafore — sizing down one from the pattern envelope.</div>
+          </div>
+          <div class="chip-row"><span class="chip">#pinafore</span><span class="chip">#corduroy</span></div>
+
+          <div class="feed-entry">
+            <div class="media" style="background:linear-gradient(135deg,#7BAF9E,#3E6B62);"></div>
+            <div class="body note">Swatch for the raglan sweater — gauge matches on 4.5mm needles.</div>
+          </div>
+
+          <div class="fab" style="background:var(--teal); color:#fff;">+</div>
+        </div>
+      </div>
+      <div class="caption">
+        <span class="num">03 · Cove detail</span>
+        <h3>Timeline feed</h3>
+        <p>Inside a Cove, entries stack newest-first: photo, note, link, or voice memo, each with optional tags. This is the screen people open most.</p>
+      </div>
+    </div>
+
+    <!-- 4. Add entry sheet -->
+    <div class="screen-col">
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="status-row"><span>9:41</span><span>●●●●</span></div>
+          <div class="screen-title" style="opacity:0.35;">Lifting Log</div>
+          <div class="sheet">
+            <div class="grab"></div>
+            <div class="add-grid">
+              <div class="add-opt"><span class="ic">📷</span>Photo</div>
+              <div class="add-opt"><span class="ic">🎙️</span>Voice</div>
+              <div class="add-opt"><span class="ic">🔗</span>Link</div>
+            </div>
+            <div class="textbox">Leg day — swapped in RDLs and hip thrusts instead of squats, back felt great...</div>
+            <div class="chip-row" style="padding:8px 0;"><span class="chip">#legday</span><span class="chip">#pr</span></div>
+            <div class="btn-primary">Save to Lifting Log</div>
+          </div>
+        </div>
+      </div>
+      <div class="caption">
+        <span class="num">04 · Add entry</span>
+        <h3>Capture sheet</h3>
+        <p>One sheet, four content types, one save action. This single component is reused everywhere you can add something — build it once, mount it everywhere.</p>
+      </div>
+    </div>
+
+    <!-- 5. Search -->
+    <div class="screen-col">
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="status-row"><span>9:41</span><span>●●●●</span></div>
+          <div class="screen-title">Search</div>
+          <div class="search-bar">🔍&nbsp; "cardigan"</div>
+          <div class="screen-sub" style="padding-top:0;">6 results across 2 Coves</div>
+          <div class="result-grid">
+            <div style="background:#C79A4B;"></div><div style="background:#8C6A32;"></div><div style="background:#7BAF9E;"></div>
+            <div style="background:#3E6B62;"></div><div style="background:#9C6B4E;"></div><div style="background:#D9A54B;"></div>
+          </div>
+
+          <div style="margin-top:14px;">
+            <div class="invite-row">
+              <div class="dot" style="background:#5F7FA6;"></div>
+              <div class="who">Matthew Cambray<div class="role">can add to "Me &amp; Matthew"</div></div>
+              <div class="pill-btn">Editor</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="caption">
+        <span class="num">05 · Search &amp; sharing</span>
+        <h3>Find it, share it</h3>
+        <p>Full-text search across every Cove, plus per-Cove invites for shared spaces. Both are additions after the MVP — noted here so you know where they'll live.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="gallery-label">
+    <h2 class="serif">What makes Cove <em>Cove</em></h2>
+  </div>
+  <div class="index">
+    <div class="index-item">
+      <p class="k serif">Coves, not a feed</p>
+      <p>Content is organized into themed collections you create, not sorted into one infinite chronological scroll. This is the one architectural decision everything else follows from.</p>
+    </div>
+    <div class="index-item">
+      <p class="k serif">Multi-type entries</p>
+      <p>A single entry can be a photo, a video, a link, a note, a voice memo, or a song — one flexible data model, not five separate ones.</p>
+    </div>
+    <div class="index-item">
+      <p class="k serif">Private-first</p>
+      <p>Everything defaults to visible only to you. Sharing is opt-in, per-Cove, and invite-based — never public by default.</p>
+    </div>
+    <div class="index-item">
+      <p class="k serif">Search over memories</p>
+      <p>Full-text (and eventually image-content) search across everything you've saved, scoped to a Cove or across all of them.</p>
+    </div>
+    <div class="index-item">
+      <p class="k serif">No ads, no algorithm</p>
+      <p>No ranking, no engagement loop, no monetization surface — the calm-tech stance that's core to the product, not a footnote.</p>
+    </div>
+    <div class="index-item">
+      <p class="k serif">Installs like a native app</p>
+      <p>Full-screen, home-screen icon, works offline for cached content — even before it's a "real" App Store app.</p>
+    </div>
+  </div>
+
+  <footer>
+    Reference mockup for a personal-use rebuild of "Cove" by Lenalifts — built for planning purposes only, not affiliated with Cove Labs, Inc.
+  </footer>
+
+</div>
