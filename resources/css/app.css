@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    color-scheme: light;
+    --cove-bg: #f1e9d8;
+    --cove-surface: #fffbf2;
+    --cove-surface-2: #e9dec5;
+    --cove-ink: #2b2018;
+    --cove-ink-muted: #6b5d4e;
+    --cove-gold: #a87c2e;
+    --cove-gold-ink: #5c4110;
+    --cove-teal: #3e6b62;
+    --cove-border: #dccfb4;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+        --cove-bg: #1c1510;
+        --cove-surface: #241b14;
+        --cove-surface-2: #2e2318;
+        --cove-ink: #ede3d0;
+        --cove-ink-muted: #b4a78e;
+        --cove-gold: #d9a54b;
+        --cove-gold-ink: #f4d999;
+        --cove-teal: #7bb3a5;
+        --cove-border: #3a2e22;
+    }
+}

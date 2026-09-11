@@ -29,4 +29,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function coves()
+    {
+        return $this->hasMany(Cove::class);
+    }
 }

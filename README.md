@@ -39,7 +39,7 @@ Full interactive version (all screens + a feature breakdown): see `docs/cove-moc
 | Phase | Scope | Est. time | Status |
 |---|---|---|---|
 | 0. Setup | Laravel install, Breeze auth, git, Filament installed | 1 week | ✅ Done |
-| 1. Data layer | Migrations + models (Cove, Entry, Tag) + Filament Resources | 1–2 weeks | Not started |
+| 1. Data layer | Migrations + models (Cove, Entry, Tag) + Filament Resources | 1–2 weeks | ✅ Done |
 | 2. Consumer MVP UI | Livewire: Coves list, timeline, add-entry sheet | 2–3 weeks | Not started |
 | 3. Multi-type entries + tags | Voice/link/music entries, tagging UI | 2 weeks | Not started |
 | 4. Search | Full-text search (Laravel Scout) | 1–2 weeks | Not started |
@@ -61,13 +61,14 @@ Full interactive version (all screens + a feature breakdown): see `docs/cove-moc
 - [x] Enabled PHP `zip` extension (Laragon php.ini) — required by Filament's export dependency
 - [x] Installed Filament v4 (`composer require filament/filament:"^4.0" -W`), pinned to v4 to stay compatible with Breeze's Livewire 3
 - [x] Ran `filament:install --panels`, created admin user, confirmed `/admin` loads and logs in
+- [x] Installed Laravel Boost (`composer require laravel/boost --dev`, `php artisan boost:install`) for Laravel/Livewire/Filament-aware agent guidelines
 
-### Phase 1 — Data layer (next up)
-- [ ] Design the Cove/Entry/Tag data model (fields, relationships)
-- [ ] Create migrations
-- [ ] Create Eloquent models + relationships
-- [ ] Create Filament Resources for Cove and Entry
-- [ ] Confirm CRUD works end-to-end through `/admin`
+### Phase 1 — Data layer ✅ complete
+- [x] Design the Cove/Entry/Tag data model (fields, relationships)
+- [x] Create migrations (`coves`, `entries`, `tags`, `entry_tag` pivot)
+- [x] Create Eloquent models + relationships (`Cove`, `Entry`, `Tag`, plus `User::coves()`)
+- [x] Create Filament Resources for Cove and Entry (custom-built forms/tables, not auto-generated)
+- [x] Confirm CRUD works end-to-end through `/admin`, including inline tag creation via `createOptionForm()`
 
 ## Getting started (local dev)
 
