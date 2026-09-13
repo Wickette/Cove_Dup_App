@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 
-Route::view('dashboard', 'dashboard')
+Route::get('/coves', \App\Livewire\Coves\Index::class)
     ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+    ->name('coves.index');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])

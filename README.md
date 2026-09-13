@@ -40,7 +40,7 @@ Full interactive version (all screens + a feature breakdown): see `docs/cove-moc
 |---|---|---|---|
 | 0. Setup | Laravel install, Breeze auth, git, Filament installed | 1 week | ✅ Done |
 | 1. Data layer | Migrations + models (Cove, Entry, Tag) + Filament Resources | 1–2 weeks | ✅ Done |
-| 2. Consumer MVP UI | Livewire: Coves list, timeline, add-entry sheet | 2–3 weeks | Not started |
+| 2. Consumer MVP UI | Livewire: Coves list, timeline, add-entry sheet | 2–3 weeks | 🚧 In progress |
 | 3. Multi-type entries + tags | Voice/link/music entries, tagging UI | 2 weeks | Not started |
 | 4. Search | Full-text search (Laravel Scout) | 1–2 weeks | Not started |
 | 5. PWA polish | Offline caching, installability, mobile UX pass | 1–2 weeks | Not started |
@@ -69,6 +69,14 @@ Full interactive version (all screens + a feature breakdown): see `docs/cove-moc
 - [x] Create Eloquent models + relationships (`Cove`, `Entry`, `Tag`, plus `User::coves()`)
 - [x] Create Filament Resources for Cove and Entry (custom-built forms/tables, not auto-generated)
 - [x] Confirm CRUD works end-to-end through `/admin`, including inline tag creation via `createOptionForm()`
+
+### Phase 2 — Consumer MVP UI 🚧 in progress
+- [x] Renamed the Breeze placeholder `dashboard` route to `coves.index` (`/coves`), including every reference across auth redirects, nav links, and tests
+- [x] Wired `/coves` to a class-based full-page Livewire component (`App\Livewire\Coves\Index`), attached to this app's `layouts.app` layout via the `#[Layout]` attribute (note: Livewire 3's *default* full-page layout path is `resources/views/components/layouts/app.blade.php`, which this app doesn't use — worth remembering for any future full-page component)
+- [x] Added the page header through Livewire's named `<x-slot:header>` slot, matching the existing `<x-app-layout>` header pattern used on `/profile`
+- [ ] Build the actual Coves list content (query the authenticated user's Coves, render as cards)
+- [ ] `/coves/{cove}` timeline route + component, with `CovePolicy`-backed authorization
+- [ ] Add-entry sheet
 
 ## Getting started (local dev)
 
