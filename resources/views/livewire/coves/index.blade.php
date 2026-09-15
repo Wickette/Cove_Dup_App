@@ -7,7 +7,7 @@
 <div>
     <div class="max-w-2xl mx-auto px-4 py-6">
         @forelse ($this->coves as $cove)
-            <a href="#" class="flex items-center gap-4 p-4 mb-3 rounded-xl bg-cove-surface border border-cove-border">
+            <a href="{{ route('coves.show', $cove) }}" wire:navigate class="flex items-center gap-4 p-4 mb-3 rounded-xl bg-cove-surface border border-cove-border">
                 <span
                     class="w-10 h-10 rounded-full shrink-0"
                     style="background-color: hsl({{ ($cove->id * 47) % 360 }}deg, 55%, 55%)"

@@ -79,8 +79,9 @@ Full interactive version (all screens + a feature breakdown): see `docs/cove-moc
 - [x] Wired `/coves` to a class-based full-page Livewire component (`App\Livewire\Coves\Index`), attached to this app's `layouts.app` layout via the `#[Layout]` attribute (note: Livewire 3's *default* full-page layout path is `resources/views/components/layouts/app.blade.php`, which this app doesn't use — worth remembering for any future full-page component)
 - [x] Added the page header through Livewire's named `<x-slot:header>` slot, matching the existing `<x-app-layout>` header pattern used on `/profile`
 - [x] Coves list content: `#[Computed] coves()` scoped to `auth()->user()`, card list with per-Cove swatch/name/entry count, empty state, gold FAB + create-cove modal (`wire:model`, `wire:submit`, inline validation)
-- [ ] Fix FAB button rendering off-position (computed `position: fixed` but landing in the wrong spot — likely a `transform` on an ancestor establishing a new containing block; still being diagnosed)
-- [ ] `/coves/{cove}` timeline route + component (`App\Livewire\Coves\Show`), with `CovePolicy`-backed authorization
+- [x] FAB button rendering — turned out not to be a real bug (computed styles checked out correctly in both desktop and mobile viewports; likely a stale render)
+- [x] `/coves/{cove}` timeline route + component (`App\Livewire\Coves\Show`), with `CovePolicy`-backed authorization — confirmed 403s on cross-user access
+- [x] Cove list cards link to their timeline (`route('coves.show', $cove)` + `wire:navigate`)
 - [ ] Add-entry sheet component (`App\Livewire\Coves\AddEntrySheet`), nested under the timeline, all 5 entry types, tag search/create
 - [ ] Nav link to Coves list
 - [ ] Feature tests under `tests/Feature/Coves/`
