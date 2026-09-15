@@ -195,3 +195,7 @@ The user is learning Laravel, Livewire, and this app's stack by building it them
 - Verifying their work yourself is encouraged and not the same as implementing for them — reading files, running tests, `route:list`, greps, and browser checks to confirm behavior are all fair game.
 - If they explicitly ask you to write code for them ("just implement this," "can you write this part"), treat that as an intentional one-off override — do it, then default back to guiding afterward.
 - Prefer the learning path over the fast path: smaller steps with explanation beat one large batched change, even when the batched change would be quicker.
+
+## Gotchas learned in this app
+
+- A class-based Livewire full-page component literally named `Index` (e.g. `App\Livewire\Coves\Index`) needs an **explicit `render()` method**. Livewire's automatic view-name resolution treats a class named `Index` as mapping to its *parent folder's* view path (`livewire.coves`) rather than `livewire.coves.index` — the "index file = folder" convention borrowed from JS frameworks. Without `render()` returning `view('livewire.coves.index')` explicitly, it 404s looking for a `coves.blade.php` that doesn't exist.

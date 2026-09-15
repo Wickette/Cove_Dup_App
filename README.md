@@ -71,12 +71,21 @@ Full interactive version (all screens + a feature breakdown): see `docs/cove-moc
 - [x] Confirm CRUD works end-to-end through `/admin`, including inline tag creation via `createOptionForm()`
 
 ### Phase 2 — Consumer MVP UI 🚧 in progress
+- [x] Model factories for `Cove`, `Entry` (with `note()`/`photo()`/`link()`/`voice()`/`song()` states), `Tag`
+- [x] `CovePolicy` (`view`/`update` scoped to the owning user) — Laravel's first policy in this app
+- [x] Wired the mockup's cream/gold/teal theme into the real app: CSS custom properties in `resources/css/app.css` (light default, dark via `prefers-color-scheme`), `cove.*` color tokens + Fraunces/Work Sans fonts in `tailwind.config.js`, restyled `layouts/app.blade.php`, `layouts/guest.blade.php`, and `livewire/layout/navigation.blade.php`
+- [x] Verified theming end-to-end in both light and dark mode via the login page
 - [x] Renamed the Breeze placeholder `dashboard` route to `coves.index` (`/coves`), including every reference across auth redirects, nav links, and tests
 - [x] Wired `/coves` to a class-based full-page Livewire component (`App\Livewire\Coves\Index`), attached to this app's `layouts.app` layout via the `#[Layout]` attribute (note: Livewire 3's *default* full-page layout path is `resources/views/components/layouts/app.blade.php`, which this app doesn't use — worth remembering for any future full-page component)
 - [x] Added the page header through Livewire's named `<x-slot:header>` slot, matching the existing `<x-app-layout>` header pattern used on `/profile`
-- [ ] Build the actual Coves list content (query the authenticated user's Coves, render as cards)
-- [ ] `/coves/{cove}` timeline route + component, with `CovePolicy`-backed authorization
-- [ ] Add-entry sheet
+- [x] Coves list content: `#[Computed] coves()` scoped to `auth()->user()`, card list with per-Cove swatch/name/entry count, empty state, gold FAB + create-cove modal (`wire:model`, `wire:submit`, inline validation)
+- [ ] Fix FAB button rendering off-position (computed `position: fixed` but landing in the wrong spot — likely a `transform` on an ancestor establishing a new containing block; still being diagnosed)
+- [ ] `/coves/{cove}` timeline route + component (`App\Livewire\Coves\Show`), with `CovePolicy`-backed authorization
+- [ ] Add-entry sheet component (`App\Livewire\Coves\AddEntrySheet`), nested under the timeline, all 5 entry types, tag search/create
+- [ ] Nav link to Coves list
+- [ ] Feature tests under `tests/Feature/Coves/`
+
+See `.claude/plans/i-want-to-continue-declarative-llama.md` for the full implementation plan.
 
 ## Getting started (local dev)
 
